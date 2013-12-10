@@ -15,6 +15,14 @@ module NewRelic
         run.loop_forever
         run.agent_shutdown
       end
+
+      def self.setup component_type_filter = nil
+        run = new
+        run.setup_from_config component_type_filter
+        run.setup_no_config_agents
+        run.agent_startup
+      end
+
       def initialize
         @config = NewRelic::Plugin::Config.config
         @context = NewRelic::Binding::Context.new(
