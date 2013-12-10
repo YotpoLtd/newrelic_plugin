@@ -4,6 +4,9 @@ module NewRelic
 # Run class. Provides entry points and polling initiation support.
 #
     class Run
+
+      attr_accessor :context
+
       #
       # Primary Driver entry point
       #
@@ -21,6 +24,7 @@ module NewRelic
         run.setup_from_config component_type_filter
         run.setup_no_config_agents
         run.agent_startup
+        return run.context
       end
 
       def initialize
